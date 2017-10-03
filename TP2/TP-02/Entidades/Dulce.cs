@@ -8,6 +8,12 @@ namespace Entidades_2017
 {
     public class Dulce : Producto
     {
+        /// <summary>
+        /// Constructor de Dulce, donde pasa todos los datos del producto utilizando el constructor base
+        /// </summary>
+        /// <param name="marca">marca a cargar</param>
+        /// <param name="patente">patente es el codigo de barras</param>
+        /// <param name="color">color a cargar</param>
         public Dulce(EMarca marca, string patente, ConsoleColor color)
             : base(marca, patente, color)
         {
@@ -24,6 +30,10 @@ namespace Entidades_2017
             }
         }
 
+        /// <summary>
+        /// Sobre escribe el metodo mostrar del base
+        /// </summary>
+        /// <returns>retorna un string con los datos del Dulce</returns>
         public override string Mostrar()
         {
             StringBuilder sb = new StringBuilder();

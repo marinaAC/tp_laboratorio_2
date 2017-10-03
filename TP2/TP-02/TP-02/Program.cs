@@ -45,19 +45,19 @@ namespace TP_02
             Console.Clear();
 
             // Muestro solo Dulces
-            Console.WriteLine(Changuito.Mostrar(changoDeCompras, Changuito.ETipo.Dulce));
+            Console.WriteLine(changoDeCompras.Mostrar(changoDeCompras, Changuito.ETipo.Dulce));
             Console.WriteLine("<---------------------------------------------->");
             Console.ReadKey();
             Console.Clear();
 
             // Muestro solo Leches
-            Console.WriteLine(Changuito.Mostrar(changoDeCompras, Changuito.ETipo.Leche));
+            Console.WriteLine(changoDeCompras.Mostrar(changoDeCompras, Changuito.ETipo.Leche));
             Console.WriteLine("<---------------------------------------------->");
             Console.ReadKey();
             Console.Clear();
 
             // Muestro solo Snacks
-            Console.WriteLine(Changuito.Mostrar(changoDeCompras, Changuito.ETipo.Snacks));
+            Console.WriteLine(changoDeCompras.Mostrar(changoDeCompras, Changuito.ETipo.Snacks));
             Console.WriteLine("<---------------------------------------------->");
             Console.ReadKey();
         }

@@ -20,10 +20,17 @@ namespace Entidades_2017
         }
 
         #region "Constructores"
+        /// <summary>
+        /// Constructor privado que instancia la lista de productos
+        /// </summary>
         private Changuito()
         {
             this._productos = new List<Producto>();
         }
+        /// <summary>
+        /// Constructor publico que recibira el espacio disponible y utilizara el constructor privado
+        /// </summary>
+        /// <param name="espacioDisponible">espacio disponible a guardar</param>
         public Changuito(int espacioDisponible):this()
         {
             this._espacioDisponible = espacioDisponible;
@@ -37,7 +44,7 @@ namespace Entidades_2017
         /// <returns></returns>
         public override string ToString()
         {
-            return Changuito.Mostrar(this, ETipo.Todos);
+            return this.Mostrar(this, ETipo.Todos);
         }
         #endregion
 
@@ -50,7 +57,7 @@ namespace Entidades_2017
         /// <param name="c">Elemento a exponer</param>
         /// <param name="ETipo">Tipos de ítems de la lista a mostrar</param>
         /// <returns></returns>
-        public static string Mostrar(Changuito c, ETipo tipo) //quitar static
+        public string Mostrar(Changuito c, ETipo tipo) //quitar static
         {
             StringBuilder sb = new StringBuilder();
 
@@ -88,14 +95,15 @@ namespace Entidades_2017
         /// <returns></returns>
         public static Changuito operator +(Changuito c, Producto p)
         {
-            Changuito aux = null;
-            if (c._productos.Count > 0 && c._productos.Count<=c._espacioDisponible)
+            Changuito aux = c;
+         
+            
+            if (c._productos.Count > 0 && c._productos.Count<c._espacioDisponible)
             {
                 foreach (Producto v in c._productos)
                 {
                     if (v != p)
                     {
-                        aux = c;
                         aux._productos.Add(p);
                         break;
                     }
@@ -107,13 +115,9 @@ namespace Entidades_2017
                 aux = c;
                 aux._productos.Add(p);
             }
-            else 
-            {
-                aux = c;
-                aux._productos.Remove(p);
-            }
-          
 
+          
+            
             return aux;
         }
         /// <summary>
@@ -124,14 +128,16 @@ namespace Entidades_2017
         /// <returns></returns>
         public static Changuito operator -(Changuito c, Producto p)
         {
-            Changuito aux = null;
-            foreach (Producto v in c._productos)
+            Changuito aux = c;
+            if(c._productos.Count > 0)
             {
-                if (v == p)
+                foreach (Producto v in c._productos)
                 {
-                    aux = c;
-                    aux._productos.Remove(p);
-                    break;
+                    if (v == p)
+                    {
+                        aux._productos.Remove(p);
+                        break;
+                    }
                 }
             }
 

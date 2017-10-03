@@ -15,11 +15,12 @@ namespace Entidades_2017
 
         #region Constructor
         /// <summary>
-        /// Por defecto, TIPO será ENTERA
+        /// Constructor que cargara por parametros los datos del producto y recibira el tipo
+        /// que por defecto, TIPO será ENTERA
         /// </summary>
-        /// <param name="marca"></param>
-        /// <param name="patente"></param>
-        /// <param name="color"></param>
+        /// <param name="marca">marca a cargar</param>
+        /// <param name="patente">patente es el codigo de barras</param>
+        /// <param name="color">color a cargar</param>
         public Leche(EMarca marca, string patente, ConsoleColor color)
             : base(marca, patente, color)
         {
@@ -47,6 +48,10 @@ namespace Entidades_2017
         }
         #endregion
         #region Metodos
+        /// <summary>
+        /// Sobre escribe el metodo mostrar del base
+        /// </summary>
+        /// <returns>retorna un string con los datos de la Leche</returns>
         public override sealed string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
