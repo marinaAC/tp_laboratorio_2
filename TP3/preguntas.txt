@@ -1,0 +1,12 @@
+
+	Perona:
+	-Que hacer con los casos, donde el error esta controlado con una exepcion, pero en la propiedad vuelvo a verificar (DNI)
+	-Mensajes de errores: Donde decido
+	-Chequear la clase de excepciones ya que no se como reutilizar bien los que son de base y pasar mensaje
+	
+	Universitario:
+	-Al momento de un equals, que excepcion debo levantar por si el objeto que estoy corrobaron es null (esto se repite en varias clases)
+	
+	Profesor:
+	-No me queda claro como realizo una queue, con un numero random de un enum, como puedo enviar o decir que pertenece a ese num, como transformar el numero en enum
+	-
