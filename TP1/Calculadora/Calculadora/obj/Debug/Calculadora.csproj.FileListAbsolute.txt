@@ -10,3 +10,6 @@ C:\Users\Administrador\Documents\UTN\Programacion-LaboratorioII\ProgramacionII\C
 C:\Users\Administrador\Documents\UTN\Programacion-LaboratorioII\tp_laboratorio_2\Calculadora\Calculadora\bin\Debug\Calculadora.exe.config
 C:\Users\Administrador\Documents\UTN\Programacion-LaboratorioII\tp_laboratorio_2\Calculadora\Calculadora\obj\Debug\Calculadora.exe
 C:\Users\Administrador\Documents\UTN\Programacion-LaboratorioII\tp_laboratorio_2\Calculadora\Calculadora\obj\Debug\Calculadora.pdb
+C:\Users\Administrador\Documents\UTN\Programacion-LaboratorioII\tp_laboratorio_2\TP1\Calculadora\Calculadora\bin\Debug\Calculadora.exe.config
+C:\Users\Administrador\Documents\UTN\Programacion-LaboratorioII\tp_laboratorio_2\TP1\Calculadora\Calculadora\obj\Debug\Calculadora.exe
+C:\Users\Administrador\Documents\UTN\Programacion-LaboratorioII\tp_laboratorio_2\TP1\Calculadora\Calculadora\obj\Debug\Calculadora.pdb
