@@ -47,6 +47,24 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Archivos\Archivos.csproj">
+      <Project>{8b13fa5c-1e39-43c9-99ac-0abe2890af7e}</Project>
+      <Name>Archivos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClasesAbstractas\ClasesAbstractas.csproj">
+      <Project>{d58f80f3-c3de-48e5-b69d-2c909bffd834}</Project>
+      <Name>ClasesAbstractas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClasesInstanciables\ClasesInstanciables.csproj">
+      <Project>{3c43e9c8-b516-4cff-a4d7-7ff959fed532}</Project>
+      <Name>ClasesInstanciables</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Excepciones\Excepciones.csproj">
+      <Project>{06058cef-c12f-4867-8274-d1b32b31c999}</Project>
+      <Name>Excepciones</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

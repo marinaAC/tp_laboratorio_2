@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace ClasesInstanciables
 {
@@ -166,12 +167,56 @@ namespace ClasesInstanciables
             return sb.ToString();
         }
 
-        /*
-         * Ver como resolver estos
-         public bool Guardar(){}
-         * 
-         * public string Leer(){}
-         */
+        /// <summary>
+        /// Convierto el objeto jornada a un tipo texto, para guardarlo, Preguntar si esto es lo que se queria o si se queria serializar
+        /// </summary>
+        /// <param name="jornada">objeto jornada</param>
+        /// <returns>true si pudo ser guardado extiosamente, false si es que no pudo guardarse y una excepcion si no puede abrirse el archivo</returns>
+        public bool Guardar(Jornada jornada) 
+        {
+            bool returnAux = false;
+            string fileNamej = "jornadaGuardada.dat";
+            StreamWriter file = new StreamWriter(fileNamej);
+            if (file != null && jornada != null )
+            {
+                file.WriteLine(jornada.ToString());
+                returnAux = true;
+            }
+            else 
+            {
+                //ver la excepcion correspondiente
+                throw new Exception("");
+            }
+            file.Close();
+            return returnAux;
+        }
+
+        /// <summary>
+        /// Leo el archivo donde se encuentran guardados los datos de jornada, y devolvere un string con todos sus datos
+        /// </summary>
+        /// <returns>STRING</returns>
+        public string Leer() 
+        {
+            string fileNamej = "jornadaGuardada.dat";
+            string aux = "";
+            StreamReader file = new StreamReader(fileNamej);
+            if (file != null)
+            {
+                aux = file.ReadToEnd();
+            }
+            else if (aux == "")
+            {
+                //ver la excepcion que le corresponde
+                throw new Exception();
+            }
+            else 
+            {
+                //ver la excepcion que le corresponde
+                throw new Exception();
+            }
+
+            return aux;
+        }
         #endregion
 
     }
