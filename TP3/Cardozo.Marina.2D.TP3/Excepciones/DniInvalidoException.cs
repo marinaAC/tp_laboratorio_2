@@ -24,8 +24,10 @@ namespace Excepciones
         /// </summary>
         /// <param name="e"></param>
         public DniInvalidoException(Exception e)
-            :base ("",e)
-        { }
+            :base(e.Message,e)
+        {
+            
+        }
 
         /// <summary>
         /// 

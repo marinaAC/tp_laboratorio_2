@@ -36,6 +36,7 @@ namespace ClasesAbstractas
             set 
             { 
                 int aux = Persona.ValidarDni(this._nacionalidad,value);
+                //boom
                 if (aux != 0) 
                 {
                     _dni = value; 
