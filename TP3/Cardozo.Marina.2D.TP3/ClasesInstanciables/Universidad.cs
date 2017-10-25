@@ -50,7 +50,13 @@ namespace ClasesInstanciables
         }
 
         //subindice
-        public Jornada this[int i] { get; set; }
+        public Jornada this[int i]
+        {
+            get;
+
+
+            set;
+        }
         #endregion
         #region Constructores
         public Universidad() { }
@@ -66,7 +72,7 @@ namespace ClasesInstanciables
         public static bool operator ==(Universidad g, Alumno a)
         {
             bool returnAux = false;
-            if (a != null)
+            if (!object.ReferenceEquals(a,null) && !object.ReferenceEquals(g,null))
             {
                 foreach (Alumno element in g.alumnos)
                 {
@@ -93,7 +99,7 @@ namespace ClasesInstanciables
         public static Profesor operator ==(Universidad g, EClases c)
         {
             Profesor aux = null;
-            if (c != null && g != null)
+            if (!object.ReferenceEquals(c,null) && !object.ReferenceEquals(g,null))
             {
                 foreach (Profesor element in g.profesores)
                 {
@@ -126,7 +132,7 @@ namespace ClasesInstanciables
         public static bool operator ==(Universidad g, Profesor i)
         {
             bool returnAux = false;
-            if (i != null || g != null)
+            if (!object.ReferenceEquals(i,null) && !object.ReferenceEquals(g,null))
             {
                 foreach (Profesor element in g.profesores)
                 {
@@ -181,12 +187,132 @@ namespace ClasesInstanciables
         {
             bool returnAux = true;
             Profesor aux = null;
+            if(!object.ReferenceEquals(g,null))
+            {
+                foreach(Profesor element in g.profesores)
+                {
+                    if(element!=c)
+                    {
+                        aux = element;
+                        break;
+                    }
+                }
+            }
+            else if (aux == null)
+            {
+                //Cambiar
+                throw new Exception("No hay profesores para dar la clase");
+            }
+            else
+            {
+                //ver
+                throw new Exception("objeto null");
+            }
             return aux;
         }
 
+        /// <summary>
+        /// Creo un auxiliar copiando de la universidad original recibida por parametro, verifico que 
+        /// no sea null, luego realizo la logica pedida, veo que la clase sea dada por un profesor
+        /// si es asi con el profesor encontrado creo la nueva jornada, luego busco en la lista de alumnos
+        /// lo que esten asignados a esa clase, para completar la jornada. Luego esta se la sumo al auxiliar
+        /// y retorno el auxiliar
+        /// </summary>
+        /// <param name="g">Objeto universidad</param>
+        /// <param name="c">enum de clase</param>
+        /// <returns>Retorna una universidad</returns>
+        public static Universidad operator +(Universidad g, EClases c)
+        {
+            Universidad aux = g;
+            Jornada jNew = null;
+            Profesor p = null;
+            if (!object.ReferenceEquals(g, null))
+            {
+                foreach (Profesor element in g.profesores)
+                {
+                    if (p == c)
+                    {
+                        p = element;
+                        break;
+                    }
+                }
+                jNew = new Jornada(c, p);
+                foreach (Alumno alumno in g.alumnos)
+                {
+                    if (alumno == c)
+                    {
+                        jNew.Alumnos.Add(alumno);
+                    }
+                }
+                if(!object.ReferenceEquals(jNew,null))
+                {
+                    aux.jornada.Add(jNew);
+                }
+                
+            }
+            else 
+            {
+                //cambiar al generico
+                throw new Exception("Objeto null");
+            }
 
-        //Sospecho que esta mal
-        private string MostrarDatos(Universidad gim)
+            return aux;
+        }
+
+        public static Universidad operator +(Universidad g, Alumno a)
+        {
+            Universidad returnAux = g;
+            bool aux = false;
+            if (!object.ReferenceEquals(returnAux, null))
+            {
+                foreach (Alumno element in g.alumnos)
+                {
+                    if (element == a)
+                    {
+                        aux = true;
+                    }
+                }
+                if (aux == false || g.alumnos.Count() == 0)
+                {
+                    returnAux.alumnos.Add(a);
+                }
+            }
+            else 
+            {
+                throw new Exception();
+            }
+
+            return returnAux;
+        }
+
+        public static Universidad operator +(Universidad g, Profesor p)
+        {
+            Universidad returnAux = g;
+            bool aux = false;
+            if (!object.ReferenceEquals(returnAux, null))
+            {
+                foreach (Profesor element in g.profesores)
+                {
+                    if (element == p)
+                    {
+                        aux = true;
+                    }
+                }
+                if (aux == false || g.profesores.Count() == 0)
+                {
+                    returnAux.profesores.Add(p);
+                }
+            }
+            else
+            {
+                throw new Exception();
+            }
+
+            return returnAux;
+        }
+
+
+        private static string MostrarDatos(Universidad gim)
         {
            StringBuilder sb = new StringBuilder();
            foreach(Jornada element in gim.jornada)
@@ -197,13 +323,13 @@ namespace ClasesInstanciables
            return sb.ToString();
         }
 
-        /*Preguntar!!!
+        
         public override string ToString()
         {
-            string returnAux = string.Format("{0}",this.MostrarDatos());
-            return base.ToString();
+            string returnAux = string.Format("{0}",Universidad.MostrarDatos(this));
+            return returnAux;
         }
-        */
+        
 
 
         #endregion 

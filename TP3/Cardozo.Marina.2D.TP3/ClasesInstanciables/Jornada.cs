@@ -127,7 +127,7 @@ namespace ClasesInstanciables
         {
             Jornada aux = j;
             int flag = 0;
-            if (a != null && j != null)
+            if (!object.ReferenceEquals(a,null) && !object.ReferenceEquals(j,null))
             {
                 foreach (Alumno element in j._alumno)
                 {
@@ -175,7 +175,7 @@ namespace ClasesInstanciables
         public bool Guardar(Jornada jornada) 
         {
             bool returnAux = false;
-            string fileNamej = "jornadaGuardada.dat";
+            string fileNamej = "Jornada.txt";
             StreamWriter file = new StreamWriter(fileNamej);
             if (file != null && jornada != null )
             {
@@ -197,10 +197,10 @@ namespace ClasesInstanciables
         /// <returns>STRING</returns>
         public string Leer() 
         {
-            string fileNamej = "jornadaGuardada.dat";
+            string fileNamej = "Jornada.txt";
             string aux = "";
             StreamReader file = new StreamReader(fileNamej);
-            if (file != null)
+            if (!object.ReferenceEquals(file,null))
             {
                 aux = file.ReadToEnd();
             }
