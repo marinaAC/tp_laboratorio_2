@@ -71,18 +71,25 @@ namespace ClasesInstanciables
         /// <summary>
         /// Preguntar!
         /// </summary>
-        private void _randomClases() 
+        private void _randomClases()
         {
-            
-           Array enumValues = Enum.GetValues(typeof(Universidad.EClases)); 
-           int randomClass = _random.Next(enumValues.Length);
-           for (int i = 0; i > enumValues.Length; i++)
-           {
-               if(i==randomClass)
-               {
-                   this._clasesDelDia.Enqueue((Universidad.EClases)randomClass);
-               }
-           }
+            int randomClass = _random.Next(0, Enum.GetNames(typeof(Universidad.EClases)).Length - 1);
+
+            this._clasesDelDia.Enqueue((Universidad.EClases)randomClass);
+
+            //Array enumValues = Enum.GetValues(typeof(Universidad.EClases));
+            //int randomClass = _random.Next(0,enumValues.Length-1);
+            //this._clasesDelDia.Enqueue((Universidad.EClases)enumValues.GetValue(randomClass));
+             
+           //Array enumValues = Enum.GetValues(typeof(Universidad.EClases)); 
+           //int randomClass = _random.Next(enumValues.Length);
+           //for (int i = 0; i > enumValues.Length; i++)
+           //{
+           //    if(i==randomClass)
+           //    {
+           //        this._clasesDelDia.Enqueue((Universidad.EClases)randomClass);
+           //    }
+           //}
         }
 
         /// <summary>

@@ -49,6 +49,7 @@ namespace ClasesInstanciables
             }
         }
 
+        //subindice
         public Jornada this[int i] { get; set; }
         #endregion
         #region Constructores
@@ -84,7 +85,7 @@ namespace ClasesInstanciables
         }
 
         /// <summary>
-        /// 
+        /// Referenceequals (buscar)
         /// </summary>
         /// <param name="g"></param>
         /// <param name="c"></param>
