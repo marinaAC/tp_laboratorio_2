@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClasesInstanciables
 {
+    [Serializable]
     public class Universidad
     {
         public enum EClases { Natacion, Pilates, Legislacion, Laboratorio }
@@ -185,7 +186,6 @@ namespace ClasesInstanciables
 
         public static Profesor operator !=(Universidad g, EClases c)
         {
-            bool returnAux = true;
             Profesor aux = null;
             if(!object.ReferenceEquals(g,null))
             {

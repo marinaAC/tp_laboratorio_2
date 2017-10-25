@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Excepciones;
 using System.Text.RegularExpressions;
 
-namespace ClasesAbstractas
+namespace EntidadesAbstractas
 {
     public abstract class Persona
     {
