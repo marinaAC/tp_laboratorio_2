@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Archivos;
 
 namespace ClasesInstanciables
 {
@@ -329,8 +330,26 @@ namespace ClasesInstanciables
             string returnAux = string.Format("{0}",Universidad.MostrarDatos(this));
             return returnAux;
         }
-        
 
+        public bool Guardar(Universidad gim) 
+        {
+            string nomArchivo = "Universidad.xml";
+            Xml<Universidad> fileXml = new Xml<Universidad>();
+            bool returnAux = fileXml.Guardar(nomArchivo, gim);
+            return returnAux;
+        }
+
+        public Universidad Leer() 
+        {
+            string nomArchivo = "Universidad.xml";
+            Universidad aux = new Universidad();
+            Xml<Universidad> fileXml = new Xml<Universidad>();
+            if (!fileXml.Leer(nomArchivo,out aux)) 
+            {
+                throw new Exception();
+            }
+            return aux;
+        }
 
         #endregion 
     }

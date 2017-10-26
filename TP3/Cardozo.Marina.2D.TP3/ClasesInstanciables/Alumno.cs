@@ -9,7 +9,7 @@ namespace ClasesInstanciables
 {
     public sealed class Alumno:Universitario
     {
-        public enum EEstadoCuenta { Deudor, Activo = "Cuota al dia" }
+        public enum EEstadoCuenta { Deudor, AlDia, Becado}
         protected Universidad.EClases _queClasesToma;
         protected EEstadoCuenta _estadoCuenta;
 

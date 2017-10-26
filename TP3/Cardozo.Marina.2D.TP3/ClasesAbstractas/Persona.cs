@@ -10,6 +10,7 @@ namespace EntidadesAbstractas
 {
     public abstract class Persona
     {
+        public enum ENacionalidad { Argentina, Extranjero }
         protected string _apellido;
         protected int _dni;
         protected ENacionalidad _nacionalidad;

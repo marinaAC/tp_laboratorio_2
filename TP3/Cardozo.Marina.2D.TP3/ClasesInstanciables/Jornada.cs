@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Archivos;
 
 namespace ClasesInstanciables
 {
@@ -168,54 +169,34 @@ namespace ClasesInstanciables
         }
 
         /// <summary>
-        /// Convierto el objeto jornada a un tipo texto, para guardarlo, Preguntar si esto es lo que se queria o si se queria serializar
+        /// Realiza un objeto de tipo texto y reutiliza su metodo Guardar, se le pasa un objeto de tipo jornada
+        /// que sera convertido a toString y como debera llamarse el archivo
         /// </summary>
         /// <param name="jornada">objeto jornada</param>
-        /// <returns>true si pudo ser guardado extiosamente, false si es que no pudo guardarse y una excepcion si no puede abrirse el archivo</returns>
+        /// <returns>true si pudo ser guardado extiosamente, false si es que no pudo guardarse</returns>
         public bool Guardar(Jornada jornada) 
         {
-            bool returnAux = false;
+            Texto txt = new Texto();
             string fileNamej = "Jornada.txt";
-            StreamWriter file = new StreamWriter(fileNamej);
-            if (file != null && jornada != null )
-            {
-                file.WriteLine(jornada.ToString());
-                returnAux = true;
-            }
-            else 
-            {
-                //ver la excepcion correspondiente
-                throw new Exception("");
-            }
-            file.Close();
+            bool returnAux = txt.Guardar(fileNamej, jornada.ToString());
             return returnAux;
         }
 
         /// <summary>
-        /// Leo el archivo donde se encuentran guardados los datos de jornada, y devolvere un string con todos sus datos
+        /// Utilizo un objeto de la clase texto para poderr leer el archivo, lanzando una excepcion en el caso de que no se pueda leer 
         /// </summary>
         /// <returns>STRING</returns>
         public string Leer() 
         {
+            Texto txt = new Texto();
+            string returnAux = "";
             string fileNamej = "Jornada.txt";
-            string aux = "";
-            StreamReader file = new StreamReader(fileNamej);
-            if (!object.ReferenceEquals(file,null))
+            if(txt.Leer(fileNamej,out returnAux))
             {
-                aux = file.ReadToEnd();
-            }
-            else if (aux == "")
-            {
-                //ver la excepcion que le corresponde
-                throw new Exception();
-            }
-            else 
-            {
-                //ver la excepcion que le corresponde
-                throw new Exception();
+                throw new Exception(); 
             }
 
-            return aux;
+            return returnAux;
         }
         #endregion
 

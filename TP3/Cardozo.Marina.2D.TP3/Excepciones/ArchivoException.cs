@@ -14,7 +14,9 @@ namespace Excepciones
         /// </summary>
         /// <param name="innerException"></param>
         public ArchivoException(Exception innerException)
-        { }
+        { 
+           
+        }
         #endregion
     }
 }
