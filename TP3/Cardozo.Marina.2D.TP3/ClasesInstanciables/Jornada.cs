@@ -67,7 +67,7 @@ namespace ClasesInstanciables
         /// <summary>
         /// Constructor privado, que iniciara la lista de alumnos
         /// </summary>
-        private Jornada() 
+        public Jornada() 
         {
             this._alumno = new List<Alumno>();
         }

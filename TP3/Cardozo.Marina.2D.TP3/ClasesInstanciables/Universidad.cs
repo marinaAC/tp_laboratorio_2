@@ -266,11 +266,15 @@ namespace ClasesInstanciables
                     }
 
                 }
-                if(p==null)
+                if (p == null)
                 {
                     throw new SinProfesorException();
                 }
-                jNew = new Jornada(c, p);
+                else
+                {
+                    jNew = new Jornada(c, p);
+                }
+                
                 foreach (Alumno alumno in aux.alumnos)
                 {
                     if (((Alumno)alumno) == c)
@@ -346,9 +350,16 @@ namespace ClasesInstanciables
            StringBuilder sb = new StringBuilder();
            foreach(Jornada element in gim.jornada)
            {
-               sb.AppendLine(element.ToString());
-               sb.AppendFormat("<------------------------------------------------>");
-           }
+                if (!object.ReferenceEquals(element.Instructor, null))
+                {
+                    sb.AppendLine(element.ToString());
+                    sb.AppendFormat("<------------------------------------------------>");
+                }
+                else
+                {
+                    continue;
+                }
+            }
            return sb.ToString();
         }
 

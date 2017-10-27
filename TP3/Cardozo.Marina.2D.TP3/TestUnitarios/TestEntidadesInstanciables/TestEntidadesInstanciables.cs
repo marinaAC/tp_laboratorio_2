@@ -74,6 +74,12 @@ namespace TestEntidadesInstanciables
             Profesor p1 = new Profesor(1, "Juan", "Cardozo", "22222222", Persona.ENacionalidad.Argentino);
             Jornada j1 = new Jornada(Universidad.EClases.SPD, p1);
 
+            Jornada j2 = new Jornada();
+            Assert.IsNotNull(j2);
+            Assert.IsNull(j2.Instructor);
+
+
+
 
         }
 
