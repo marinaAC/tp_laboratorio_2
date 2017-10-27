@@ -10,7 +10,7 @@ namespace EntidadesAbstractas
 {
     public abstract class Persona
     {
-        public enum ENacionalidad { Argentina, Extranjero }
+        public enum ENacionalidad { Argentino, Extranjero }
         protected string _apellido;
         protected int _dni;
         protected ENacionalidad _nacionalidad;
@@ -22,8 +22,14 @@ namespace EntidadesAbstractas
         /// </summary>
         public string Apellido
         {
-            get { return _apellido; }
-            set { _apellido = value; }
+            get 
+            { 
+                return _apellido; 
+            }
+            set 
+            { 
+                _apellido = ValidarNombreApellido(value); 
+            }
         }
         /// <summary>
         /// Propiedades para editar o traer el DNI
@@ -37,7 +43,6 @@ namespace EntidadesAbstractas
             set 
             { 
                 int aux = Persona.ValidarDni(this._nacionalidad,value);
-                //boom
                 if (aux != 0) 
                 {
                     _dni = value; 
@@ -50,8 +55,14 @@ namespace EntidadesAbstractas
         /// </summary>
         public ENacionalidad Nacionalidad
         {
-            get { return _nacionalidad; }
-            set { _nacionalidad = value; }
+            get 
+            {
+                return _nacionalidad; 
+            }
+            set 
+            {
+                _nacionalidad = value; 
+            }
         }
 
         /// <summary>
@@ -59,8 +70,14 @@ namespace EntidadesAbstractas
         /// </summary>
         public string Nombre
         {
-            get { return _nombre; }
-            set { _nombre = value; }
+            get 
+            { 
+                return _nombre; 
+            }
+            set 
+            { 
+                _nombre = ValidarNombreApellido(value); 
+            }
         }
 
         /// <summary>
@@ -123,13 +140,14 @@ namespace EntidadesAbstractas
         private static int ValidarDni(ENacionalidad nacionalidad, int dato) 
         {
             int returnAux = 0;
-            if(nacionalidad != ENacionalidad.Argentina)
-            {
-                throw new DniInvalidoException("Se requiere que sea Argentino");
-            }
-            else if (dato < 1 || dato > 89999999)
+
+            if (dato < 1 || dato > 89999999 && nacionalidad == ENacionalidad.Argentino)
             {
                 throw new DniInvalidoException("Largo invalido de DNI");
+            }
+            else if (dato > 1 && dato < 89999999 && nacionalidad != ENacionalidad.Argentino)
+            {
+                throw new NacionalidadInvalidaException("El largo de DNI no corresponde con la nacionalidad");
             }
             else 
             {
@@ -170,7 +188,7 @@ namespace EntidadesAbstractas
             {
                 returnAux = dato;
             }
-            return dato;
+            return returnAux;
 
         }
 

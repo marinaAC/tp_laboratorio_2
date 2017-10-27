@@ -15,7 +15,7 @@ namespace ClasesInstanciables
         #region Constructores
         public Profesor() { }
 
-        private Profesor() 
+        static Profesor() 
         {
             _random = new Random();
         }
@@ -31,6 +31,7 @@ namespace ClasesInstanciables
         public Profesor(int id, string nombre, string apellido, string dni, ENacionalidad nacionalidad)
             : base(id,nombre,apellido,dni,nacionalidad)
         {
+            this._clasesDelDia = new Queue<Universidad.EClases>();
             for (int i = 0; i <= 2; i++ )
             {
                 this._randomClases();
@@ -44,7 +45,7 @@ namespace ClasesInstanciables
         /// Sobreescribe el metodo abstracto ParticiparEnClase, completandolo con los datos de las clases que da el profesor
         /// </summary>
         /// <returns></returns>
-        protected override string ParticiparEnClase()
+        public override string ParticiparEnClase()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("CLASES DEL DIA ");
@@ -101,7 +102,7 @@ namespace ClasesInstanciables
         public static bool operator ==(Profesor p, Universidad.EClases c)
         {
             bool returnAux = false;
-            if (p != null && c != null)
+            if (!object.ReferenceEquals(p,null) && !object.ReferenceEquals(c,null))
             {
                 foreach (Universidad.EClases element in p._clasesDelDia)
                 {

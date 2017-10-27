@@ -53,7 +53,7 @@ namespace ClasesInstanciables
 
         #region Metodos
         /// <summary>
-        /// 
+        /// Verifica que el alumno sea igual a una clase, si la tiene cargada y su estado no es deudor
         /// </summary>
         /// <param name="a"></param>
         /// <param name="c"></param>
@@ -61,7 +61,7 @@ namespace ClasesInstanciables
         public static bool operator ==(Alumno a, Universidad.EClases c)
         {
             bool returnAux = false;
-            if (a != null && c != null)
+            if (!object.ReferenceEquals(a,null) && !object.ReferenceEquals(c,null))
             {
                 if (a._queClasesToma == c && a._estadoCuenta != EEstadoCuenta.Deudor)
                 {
@@ -70,7 +70,7 @@ namespace ClasesInstanciables
             }
             else 
             {
-                throw new Exception("No puedo realizar la comparacion entre Alumno y Clase, ya que hay un elemento que es null");
+                throw new NullReferenceException("No puedo realizar la comparacion entre Alumno y Clase, ya que hay un elemento que es null");
             }
             return returnAux;
         }

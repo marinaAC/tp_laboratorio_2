@@ -73,12 +73,11 @@ namespace EntidadesAbstractas
         public override bool Equals(object obj)
         {
             bool returnAux = false;
-            if(obj == null)
+            if(object.ReferenceEquals(obj,null))
             {
-                //Esto deberia lanzar una excepcion! Preguntar
-                returnAux = false;
+                throw new ArgumentNullException();
             }
-            if (obj.GetType() == this.GetType() && ((Universitario)obj).DNI == this.DNI || ((Universitario)obj).legajo == this.legajo)
+            else if(obj.GetType() == this.GetType() && ((Universitario)obj).DNI == this.DNI || ((Universitario)obj).legajo == this.legajo)
             {
                 returnAux = true;
             }
@@ -86,17 +85,13 @@ namespace EntidadesAbstractas
         }
 
         /// <summary>
-        /// Chequear
+        /// Testear
         /// </summary>
         /// <returns></returns>
         protected virtual string MostrarDato() 
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("NOMBRE COMPLETO: {0},{1}",this._apellido,this._nombre);
-            sb.AppendLine();
-            sb.AppendFormat("NACIONALIDAD: {0}",this._nacionalidad);
-            sb.AppendLine();
-            sb.AppendLine();
+            sb.AppendLine(base.ToString());
             sb.AppendFormat("Legajo: {0}",this.legajo);
 
             return sb.ToString();

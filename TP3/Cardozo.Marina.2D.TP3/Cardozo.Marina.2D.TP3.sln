@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.8
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trabajoPracticoN3", "trabajoPracticoN3\trabajoPracticoN3.csproj", "{ED3470D5-58FB-4AD9-AB23-B301BA0094BC}"
 EndProject
@@ -12,6 +12,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClasesInstanciables", "ClasesInstanciables\ClasesInstanciables.csproj", "{3C43E9C8-B516-4CFF-A4D7-7FF959FED532}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Excepciones", "Excepciones\Excepciones.csproj", "{06058CEF-C12F-4867-8274-D1B32B31C999}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestArchivoNotFound", "TestUnitarios\TestArchivoNotFound\TestArchivoNotFound.csproj", "{EBF93E92-2062-4606-8C6E-67F9348A2AED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEntidadesInstanciables", "TestUnitarios\TestEntidadesInstanciables\TestEntidadesInstanciables.csproj", "{FCA8260D-C6C1-415B-B3BD-61480E2C8DD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{06058CEF-C12F-4867-8274-D1B32B31C999}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06058CEF-C12F-4867-8274-D1B32B31C999}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06058CEF-C12F-4867-8274-D1B32B31C999}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBF93E92-2062-4606-8C6E-67F9348A2AED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBF93E92-2062-4606-8C6E-67F9348A2AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBF93E92-2062-4606-8C6E-67F9348A2AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBF93E92-2062-4606-8C6E-67F9348A2AED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCA8260D-C6C1-415B-B3BD-61480E2C8DD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCA8260D-C6C1-415B-B3BD-61480E2C8DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCA8260D-C6C1-415B-B3BD-61480E2C8DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCA8260D-C6C1-415B-B3BD-61480E2C8DD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

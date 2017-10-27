@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Archivos;
+using Excepciones;
+
 
 namespace ClasesInstanciables
 {
     [Serializable]
     public class Universidad
     {
-        public enum EClases { Natacion, Pilates, Legislacion, Laboratorio }
+        public enum EClases { Programacion, Laboratorio, Legislacion, SPD }
         protected List<Alumno> alumnos;
         protected List<Profesor> profesores;
         protected List<Jornada> jornada;
@@ -54,14 +56,39 @@ namespace ClasesInstanciables
         //subindice
         public Jornada this[int i]
         {
-            get;
+            get
+            {
+                if (i > 0 && i < jornada.Count)
+                {
+                    return jornada[i];
+                }
+                else 
+                {
+                    throw new Exception();
+                }
+            }
 
 
-            set;
+            set 
+            {
+                if (i > 0 && i < jornada.Count)
+                {
+                    jornada[i] = value;
+                }
+                else 
+                {
+                    throw new Exception();
+                }
+            }
         }
         #endregion
         #region Constructores
-        public Universidad() { }
+        public Universidad() 
+        {
+            this.alumnos = new List<Alumno>();
+            this.jornada = new List<Jornada>();
+            this.profesores = new List<Profesor>();
+        }
         #endregion
 
         #region Metodos
@@ -227,20 +254,26 @@ namespace ClasesInstanciables
             Universidad aux = g;
             Jornada jNew = null;
             Profesor p = null;
-            if (!object.ReferenceEquals(g, null))
+            if (!object.ReferenceEquals(aux, null))
             {
-                foreach (Profesor element in g.profesores)
+                foreach (Profesor element in aux.profesores)
                 {
-                    if (p == c)
+
+                    if (((Profesor)element) == c)
                     {
                         p = element;
                         break;
                     }
+
+                }
+                if(p==null)
+                {
+                    throw new SinProfesorException();
                 }
                 jNew = new Jornada(c, p);
-                foreach (Alumno alumno in g.alumnos)
+                foreach (Alumno alumno in aux.alumnos)
                 {
-                    if (alumno == c)
+                    if (((Alumno)alumno) == c)
                     {
                         jNew.Alumnos.Add(alumno);
                     }
@@ -266,13 +299,10 @@ namespace ClasesInstanciables
             bool aux = false;
             if (!object.ReferenceEquals(returnAux, null))
             {
-                foreach (Alumno element in g.alumnos)
-                {
-                    if (element == a)
-                    {
-                        aux = true;
-                    }
-                }
+               if(returnAux.alumnos.Contains(a))
+               {
+                   aux = true;
+               }
                 if (aux == false || g.alumnos.Count() == 0)
                 {
                     returnAux.alumnos.Add(a);
@@ -292,17 +322,15 @@ namespace ClasesInstanciables
             bool aux = false;
             if (!object.ReferenceEquals(returnAux, null))
             {
-                foreach (Profesor element in g.profesores)
+                if(returnAux.profesores.Contains(p))
                 {
-                    if (element == p)
-                    {
-                        aux = true;
-                    }
+                    aux = true;
                 }
                 if (aux == false || g.profesores.Count() == 0)
                 {
                     returnAux.profesores.Add(p);
                 }
+
             }
             else
             {
@@ -331,7 +359,7 @@ namespace ClasesInstanciables
             return returnAux;
         }
 
-        public bool Guardar(Universidad gim) 
+        public static bool Guardar(Universidad gim) 
         {
             string nomArchivo = "Universidad.xml";
             Xml<Universidad> fileXml = new Xml<Universidad>();
@@ -339,7 +367,7 @@ namespace ClasesInstanciables
             return returnAux;
         }
 
-        public Universidad Leer() 
+        public static Universidad Leer() 
         {
             string nomArchivo = "Universidad.xml";
             Universidad aux = new Universidad();

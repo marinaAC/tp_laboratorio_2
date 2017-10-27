@@ -25,14 +25,14 @@ namespace Archivos
         {
             bool returnAux = false;
             StreamWriter text = new StreamWriter(archivo);
-            if (!object.ReferenceEquals(text, null) && datos != null)
+            if (!object.ReferenceEquals(text, null) && !object.ReferenceEquals(datos,null))
             {
                 text.Write(datos);
                 returnAux = true;
             }
             else
             {
-                throw new ArchivoException(new FileNotFoundException());
+                throw new ArchivosException("No pudo abrirse el archivo");
             }
 
             return returnAux;
@@ -55,7 +55,7 @@ namespace Archivos
             }
             else 
             {
-                throw new ArchivoException(new FileNotFoundException());
+                throw new ArchivosException(new FileNotFoundException());
             }
 
             return returnAux;
