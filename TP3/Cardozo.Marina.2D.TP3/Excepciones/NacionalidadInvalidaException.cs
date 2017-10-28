@@ -10,12 +10,12 @@ namespace Excepciones
     {
         #region Constructores
         /// <summary>
-        /// 
+        /// Constructor por defecto
         /// </summary>
         public NacionalidadInvalidaException() { }
 
         /// <summary>
-        /// 
+        /// Constructor que utiliza el base
         /// </summary>
         /// <param name="mensaje"></param>
         public NacionalidadInvalidaException(string mensaje):base(mensaje) { }

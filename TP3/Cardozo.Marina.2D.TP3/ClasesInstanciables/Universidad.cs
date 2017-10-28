@@ -9,15 +9,23 @@ using Excepciones;
 
 namespace ClasesInstanciables
 {
+    /// <summary>
+    /// Clase serializable
+    /// </summary>
     [Serializable]
     public class Universidad
     {
+        #region Atributos
         public enum EClases { Programacion, Laboratorio, Legislacion, SPD }
         protected List<Alumno> alumnos;
         protected List<Profesor> profesores;
         protected List<Jornada> jornada;
+        #endregion
 
         #region Properties
+        /// <summary>
+        /// Retornara o seteara una lista de tipo alumnos
+        /// </summary>
         public List<Alumno> Alumnos 
         { 
             get
@@ -29,6 +37,10 @@ namespace ClasesInstanciables
                 alumnos = value;
             }
         }
+
+        /// <summary>
+        /// Retornara o seteara una lista de tipo profesor
+        /// </summary>
         public List<Profesor> Instructores 
         {
             get 
@@ -41,6 +53,9 @@ namespace ClasesInstanciables
             }
         }
 
+        /// <summary>
+        /// Retornara o seteara una lista de tipo jornadas
+        /// </summary>
         public List<Jornada> Jornadas 
         { 
             get
@@ -53,12 +68,16 @@ namespace ClasesInstanciables
             }
         }
 
-        //subindice
+        /// <summary>
+        /// Retornara el indice de la lista de tipo jornada
+        /// </summary>
+        /// <param name="i">indice de tipo entero</param>
+        /// <returns>Retornara o seteara una Jornada en la lista</returns>
         public Jornada this[int i]
         {
             get
             {
-                if (i > 0 && i < jornada.Count)
+                if (i >= 0 && i < jornada.Count)
                 {
                     return jornada[i];
                 }
@@ -82,7 +101,11 @@ namespace ClasesInstanciables
             }
         }
         #endregion
+
         #region Constructores
+        /// <summary>
+        /// Constructor donde instanciara las listas
+        /// </summary>
         public Universidad() 
         {
             this.alumnos = new List<Alumno>();
@@ -93,11 +116,12 @@ namespace ClasesInstanciables
 
         #region Metodos
         /// <summary>
-        /// 
+        /// Verificara que los dos objetos por param no sean null, luego verificara si el alumno se encuentra en la lista
+        /// de la universidad
         /// </summary>
-        /// <param name="g"></param>
-        /// <param name="a"></param>
-        /// <returns></returns>
+        /// <param name="g">obj de universidad</param>
+        /// <param name="a">obj de alumno</param>
+        /// <returns>true si es que se encuentra, false si es que no</returns>
         public static bool operator ==(Universidad g, Alumno a)
         {
             bool returnAux = false;
@@ -113,18 +137,18 @@ namespace ClasesInstanciables
             }
             else 
             {
-                throw new Exception();
+                throw new NullReferenceException();
             }
 
             return returnAux;
         }
 
         /// <summary>
-        /// Referenceequals (buscar)
+        /// Verificara que los dos objetos por param no sean null, luego verificara si hay algun profesor que este dando esa clase
         /// </summary>
-        /// <param name="g"></param>
-        /// <param name="c"></param>
-        /// <returns></returns>
+        /// <param name="g">obj de tipo Universidad</param>
+        /// <param name="c">enum de clases</param>
+        /// <returns>true: si encuentra profesor, false sino lo encuentra</returns>
         public static Profesor operator ==(Universidad g, EClases c)
         {
             Profesor aux = null;
@@ -140,23 +164,24 @@ namespace ClasesInstanciables
 
                 if (aux == null) 
                 {
-                    //Exception del profesor cambiar!!
-                    throw new Exception("");
+                    
+                    throw new SinProfesorException();
                 }
             }
             else 
             {
-                throw new Exception();
+                throw new NullReferenceException();
             }
 
             return aux;
         }
 
         /// <summary>
-        /// Preguntar por estos errores
+        /// Verificara que los dos objetos por param no sean null, luego verificara si el profesor se encuentra en la lista
+        /// de la universidad
         /// </summary>
-        /// <param name="g"></param>
-        /// <param name="i"></param>
+        /// <param name="g">obj de tipo universidad</param>
+        /// <param name="i">obj de tipo profesor</param>
         /// <returns></returns>
         public static bool operator ==(Universidad g, Profesor i)
         {
@@ -173,17 +198,17 @@ namespace ClasesInstanciables
             }
             else 
             {
-                throw new Exception("No puede realizarse la igualacion, el obj universidad o profesor es nulo");
+                throw new NullReferenceException("No puede realizarse la igualacion, el obj universidad o profesor es nulo");
             }
             return returnAux;
         }
 
         /// <summary>
-        /// 
+        /// Verifica que el alumno no este en la lista de la universidad
         /// </summary>
-        /// <param name="g"></param>
-        /// <param name="a"></param>
-        /// <returns></returns>
+        /// <param name="g">obj de tipo Universidad</param>
+        /// <param name="a">obj de tipo Alumno</param>
+        /// <returns>true si son distintos, false si son verdaderos</returns>
         public static bool operator !=(Universidad g, Alumno a)
         {
             bool returnAux = true;
@@ -196,11 +221,11 @@ namespace ClasesInstanciables
         }
 
         /// <summary>
-        /// 
+        /// Verifica que el profesor no este en la lista de la universidad
         /// </summary>
-        /// <param name="g"></param>
-        /// <param name="i"></param>
-        /// <returns></returns>
+        /// <param name="g">obj de tipo Universidad</param>
+        /// <param name="i">obj de tipo Profesor</param>
+        /// <returns>true si son distintos, false si son verdaderos</returns>
         public static bool operator !=(Universidad g, Profesor i)
         {
             bool returnAux = true;
@@ -212,6 +237,12 @@ namespace ClasesInstanciables
             return returnAux;
         }
 
+        /// <summary>
+        /// Verifica que no haya un profesor dando esa clase
+        /// </summary>
+        /// <param name="g">obj Universidad</param>
+        /// <param name="c">enum de clases</param>
+        /// <returns>Retorna el profesor que no pueda dar esa clase</returns>
         public static Profesor operator !=(Universidad g, EClases c)
         {
             Profesor aux = null;
@@ -228,13 +259,11 @@ namespace ClasesInstanciables
             }
             else if (aux == null)
             {
-                //Cambiar
-                throw new Exception("No hay profesores para dar la clase");
+                throw new SinProfesorException();
             }
             else
             {
-                //ver
-                throw new Exception("objeto null");
+                throw new NullReferenceException();
             }
             return aux;
         }
@@ -266,7 +295,7 @@ namespace ClasesInstanciables
                     }
 
                 }
-                if (p == null)
+                if (object.ReferenceEquals(p,null))
                 {
                     throw new SinProfesorException();
                 }
@@ -290,13 +319,23 @@ namespace ClasesInstanciables
             }
             else 
             {
-                //cambiar al generico
-                throw new Exception("Objeto null");
+                
+                throw new NullReferenceException();
             }
 
             return aux;
         }
 
+
+        /// <summary>
+        /// Verifica que ninguno de los obj recibidos por param sea null, luego chequea que el alumno pasado por param 
+        /// no se encuentre el la lista, sino se encuentra o la lista es igual a 0, ya que es la primera vez que se inserta un alumno
+        /// se agregara en un objeto de tipo universidad auxiliar, que es una copia del recibido por parametro, que luego se retorna
+        /// </summary>
+        /// <param name="g">obj Universidad</param>
+        /// <param name="a">obj Alumno</param>
+        /// <returns>Se retornara el mismo objeto sin el alumno si es que el alumno se encuentra en la universidad, sino se
+        /// entregara una copia con el alumno incluido</returns>
         public static Universidad operator +(Universidad g, Alumno a)
         {
             Universidad returnAux = g;
@@ -307,10 +346,14 @@ namespace ClasesInstanciables
                {
                    aux = true;
                }
-                if (aux == false || g.alumnos.Count() == 0)
-                {
-                    returnAux.alumnos.Add(a);
-                }
+               if (aux == false || g.alumnos.Count() == 0)
+               {
+                   returnAux.alumnos.Add(a);
+               }
+               else 
+               {
+                   throw new AlumnoRepetidoException();
+               }
             }
             else 
             {
@@ -320,6 +363,15 @@ namespace ClasesInstanciables
             return returnAux;
         }
 
+        /// <summary>
+        /// Verifica que ninguno de los obj recibidos por param sea null, luego chequea que el profesor pasado por param 
+        /// no se encuentre el la lista, sino se encuentra o la lista es igual a 0, ya que es la primera vez que se inserta un profesor
+        /// se agregara en un objeto de tipo universidad auxiliar, que es una copia del recibido por parametro, que luego se retorna
+        /// </summary>
+        /// <param name="g">obj Universidad</param>
+        /// <param name="a">obj Profesor</param>
+        /// <returns>Se retornara el mismo objeto sin el alumno si es que el profesor se encuentra en la universidad, sino se
+        /// entregara una copia con el profesor incluido</returns>
         public static Universidad operator +(Universidad g, Profesor p)
         {
             Universidad returnAux = g;
@@ -345,6 +397,11 @@ namespace ClasesInstanciables
         }
 
 
+        /// <summary>
+        /// Mostrara todos los datos de la universidad, imprimiendo la lista de Jornada
+        /// </summary>
+        /// <param name="gim">obj universidad</param>
+        /// <returns>STRING</returns>
         private static string MostrarDatos(Universidad gim)
         {
            StringBuilder sb = new StringBuilder();
@@ -354,6 +411,7 @@ namespace ClasesInstanciables
                 {
                     sb.AppendLine(element.ToString());
                     sb.AppendFormat("<------------------------------------------------>");
+                    sb.AppendLine();
                 }
                 else
                 {
@@ -363,13 +421,22 @@ namespace ClasesInstanciables
            return sb.ToString();
         }
 
-        
+        /// <summary>
+        /// Hara publico mostrardatos()
+        /// </summary>
+        /// <returns>STRING</returns>
         public override string ToString()
         {
             string returnAux = string.Format("{0}",Universidad.MostrarDatos(this));
             return returnAux;
         }
 
+
+        /// <summary>
+        /// Serializara los datos de la universidad pasada por param, utilizando un objeto de tipo XML, de la clase archivos
+        /// </summary>
+        /// <param name="gim">obj Universidad</param>
+        /// <returns>True, si fue guardado, false sino pudo ser guardado</returns>
         public static bool Guardar(Universidad gim) 
         {
             string nomArchivo = "Universidad.xml";
@@ -378,6 +445,11 @@ namespace ClasesInstanciables
             return returnAux;
         }
 
+        /// <summary>
+        /// Deserializara los datos de la universidad del archivo creado
+        /// </summary>
+        /// <param name="gim">obj Universidad</param>
+        /// <returns>Objeto del archivo xml</returns>
         public static Universidad Leer() 
         {
             string nomArchivo = "Universidad.xml";

@@ -6,24 +6,29 @@ using System.Threading.Tasks;
 
 namespace EntidadesAbstractas
 {
+    /// <summary>
+    /// Clase universitario, hereda de Persona
+    /// </summary>
     public abstract class Universitario : Persona
     {
+        #region Atributos
         protected int legajo;
+        #endregion
 
         #region Constructores
         /// <summary>
-        /// 
+        /// Constructor por defecto publico
         /// </summary>
         public Universitario() { }
 
         /// <summary>
-        /// 
+        /// Constructor que llamara al base, pasando todos sus datos por parametros, mas el legajo para poder construir el objeto
         /// </summary>
-        /// <param name="legajo"></param>
-        /// <param name="nombre"></param>
-        /// <param name="apellido"></param>
-        /// <param name="dni"></param>
-        /// <param name="nacionalidad"></param>
+        /// <param name="legajo">Tipo int, id de la persona</param>
+        /// <param name="nombre">string con el nombre de la persona a cargar</param>
+        /// <param name="apellido">string con el apellido de la persona a cargar</param>
+        /// <param name="dni">string con el dni de la persona a cargar</param>
+        /// <param name="nacionalidad">enum de tipo nacionalidad</param>
         public Universitario(int legajo, string nombre, string apellido, string dni, ENacionalidad nacionalidad) 
             :base(nombre,apellido, dni,nacionalidad)
         {
@@ -85,9 +90,9 @@ namespace EntidadesAbstractas
         }
 
         /// <summary>
-        /// Testear
+        /// Metodo virtual en el cual traera los datos de base de toString, sumandole la propiedad de la clase
         /// </summary>
-        /// <returns></returns>
+        /// <returns>STRING</returns>
         protected virtual string MostrarDato() 
         {
             StringBuilder sb = new StringBuilder();
@@ -97,6 +102,10 @@ namespace EntidadesAbstractas
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Clase abstracta donde las clases que hereden de esta, deberan implementar
+        /// </summary>
+        /// <returns>retornara un string</returns>
         public abstract string ParticiparEnClase();
         #endregion
     }

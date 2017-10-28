@@ -79,8 +79,6 @@ namespace TestEntidadesInstanciables
             Assert.IsNull(j2.Instructor);
 
 
-
-
         }
 
         [TestMethod]
@@ -89,15 +87,7 @@ namespace TestEntidadesInstanciables
             Universidad uni1 = new Universidad();
             Assert.IsNotNull(uni1);
             Alumno a1 = new Alumno(1, "Pedro", "Perez", "12345678", EntidadesAbstractas.Universitario.ENacionalidad.Argentino, Universidad.EClases.Laboratorio);
-            //uni1 + a1;
-            
-            try
-            {
-            }
-            catch (Exception e) 
-            {
-                
-            }
+
 
         }
 

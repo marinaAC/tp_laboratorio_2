@@ -7,27 +7,39 @@ using EntidadesAbstractas;
 
 namespace ClasesInstanciables
 {
+    /// <summary>
+    /// Clase sealed, que hereda de Universitario
+    /// </summary>
     public sealed class Profesor :Universitario
     {
+        #region Atributos
         protected Queue<Universidad.EClases> _clasesDelDia;
         protected static Random _random;
+        #endregion 
 
         #region Constructores
+        /// <summary>
+        /// Constructor por defecto
+        /// </summary>
         public Profesor() { }
 
+        /// <summary>
+        /// Constructor estatico
+        /// </summary>
         static Profesor() 
         {
             _random = new Random();
         }
 
         /// <summary>
-        /// Pregunar!!
+        /// Constructor que recibira por parametro todos los datos para poder cargar el profesor
+        /// Inicializara la lista de clases
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="nombre"></param>
-        /// <param name="apellido"></param>
-        /// <param name="dni"></param>
-        /// <param name="nacionalidad"></param>
+        /// <param name="id">legajo de tipo int</param>
+        /// <param name="nombre">nombre a cargar de tipo string</param>
+        /// <param name="apellido">apellido a cargar de tipo string</param>
+        /// <param name="dni">dni a cargar de tipo string</param>
+        /// <param name="nacionalidad">enum de tipo nacionalidad</param>
         public Profesor(int id, string nombre, string apellido, string dni, ENacionalidad nacionalidad)
             : base(id,nombre,apellido,dni,nacionalidad)
         {
@@ -48,7 +60,7 @@ namespace ClasesInstanciables
         public override string ParticiparEnClase()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("CLASES DEL DIA ");
+            sb.AppendFormat("\nCLASES DEL DIA ");
             sb.AppendLine();
             foreach(Universidad.EClases element in this._clasesDelDia)
             {
@@ -70,7 +82,8 @@ namespace ClasesInstanciables
         }
 
         /// <summary>
-        /// Preguntar!
+        /// Metodo privado en el cual asignara un numero random, y lo convertira en un enum de la clase, para luego agregarlo
+        /// en la lista
         /// </summary>
         private void _randomClases()
         {
@@ -78,19 +91,6 @@ namespace ClasesInstanciables
 
             this._clasesDelDia.Enqueue((Universidad.EClases)randomClass);
 
-            //Array enumValues = Enum.GetValues(typeof(Universidad.EClases));
-            //int randomClass = _random.Next(0,enumValues.Length-1);
-            //this._clasesDelDia.Enqueue((Universidad.EClases)enumValues.GetValue(randomClass));
-             
-           //Array enumValues = Enum.GetValues(typeof(Universidad.EClases)); 
-           //int randomClass = _random.Next(enumValues.Length);
-           //for (int i = 0; i > enumValues.Length; i++)
-           //{
-           //    if(i==randomClass)
-           //    {
-           //        this._clasesDelDia.Enqueue((Universidad.EClases)randomClass);
-           //    }
-           //}
         }
 
         /// <summary>

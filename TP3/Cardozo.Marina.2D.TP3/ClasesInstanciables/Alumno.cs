@@ -7,27 +7,32 @@ using EntidadesAbstractas;
 
 namespace ClasesInstanciables
 {
+    /// <summary>
+    /// Clase que no podra heredar, si recibe una herencia de Universitario
+    /// </summary>
     public sealed class Alumno:Universitario
     {
+        #region Atributos
         public enum EEstadoCuenta { Deudor, AlDia, Becado}
         protected Universidad.EClases _queClasesToma;
         protected EEstadoCuenta _estadoCuenta;
+        #endregion
 
         #region Constructores
         /// <summary>
-        /// 
+        /// Constructor por defecto
         /// </summary>
         public Alumno() { }
 
         /// <summary>
-        /// 
+        /// Constructor que recibira por parametro todos los datos del alumno
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="nombre"></param>
-        /// <param name="apellido"></param>
-        /// <param name="dni"></param>
-        /// <param name="nacionalidad"></param>
-        /// <param name="clasesQueToma"></param>
+        /// <param name="id">legajo de tipo int</param>
+        /// <param name="nombre">nombre a cargar de tipo string</param>
+        /// <param name="apellido">apellido a cargar de tipo string</param>
+        /// <param name="dni">dni a cargar de tipo string</param>
+        /// <param name="nacionalidad">enum del tipo nacionalidad</param>
+        /// <param name="clasesQueToma">enum de las clases, que se encuentran en la clase universidad</param>
         public Alumno(int id, string nombre, string apellido, string dni, ENacionalidad nacionalidad, Universidad.EClases clasesQueToma) 
             :base(id, nombre, apellido, dni, nacionalidad)
         {
@@ -35,15 +40,15 @@ namespace ClasesInstanciables
         }
 
         /// <summary>
-        /// 
+        /// Construstor que reutiliza el constructor anterior
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="nombre"></param>
-        /// <param name="apellido"></param>
-        /// <param name="dni"></param>
-        /// <param name="nacionalidad"></param>
-        /// <param name="clasesQueToma"></param>
-        /// <param name="estadoCuenta"></param>
+        /// <param name="id">legajo de tipo int</param>
+        /// <param name="nombre">nombre a cargar de tipo string</param>
+        /// <param name="apellido">apellido a cargar de tipo string</param>
+        /// <param name="dni">dni a cargar de tipo string</param>
+        /// <param name="nacionalidad">enum del tipo nacionalidad</param>
+        /// <param name="clasesQueToma">enum de las clases, que se encuentran en la clase universidad</param>
+        /// <param name="estadoCuenta">enum del estado de cuenta del alumno</param>
         public Alumno(int id, string nombre, string apellido, string dni, ENacionalidad nacionalidad, Universidad.EClases clasesQueToma, EEstadoCuenta estadoCuenta)
             : this(id, nombre, apellido, dni, nacionalidad, clasesQueToma)
         {
@@ -55,9 +60,11 @@ namespace ClasesInstanciables
         /// <summary>
         /// Verifica que el alumno sea igual a una clase, si la tiene cargada y su estado no es deudor
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="c"></param>
-        /// <returns></returns>
+        /// <param name="a">objeto tipo alumno</param>
+        /// <param name="c">enum de la clase</param>
+        /// <returns>true: si es que el alumno tiene la clase cargada y no es deudor, 
+        /// False, si es deudor o no tiene la clase cargada. 
+        /// Contempla la excepcion de que algun objeto recibido sea null</returns>
         public static bool operator ==(Alumno a, Universidad.EClases c)
         {
             bool returnAux = false;
@@ -76,11 +83,12 @@ namespace ClasesInstanciables
         }
 
         /// <summary>
-        /// 
+        /// Verifica que el alumno no sea igual a una clase, reutilizando el operador ==, 
+        /// si este retorna true, el resultado de esta operacion es false
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="c"></param>
-        /// <returns></returns>
+        /// <param name="a">objeto tipo alumno</param>
+        /// <param name="c">enum de la clase</param>
+        /// <returns>true si son distintos, false si son iguales</returns>
         public static bool operator !=(Alumno a, Universidad.EClases c)
         {
             bool returnAux = true;
@@ -92,9 +100,9 @@ namespace ClasesInstanciables
         }
 
         /// <summary>
-        /// 
+        /// Implementa la clase abstracta ParticiparEnClase, donde retoranara un string con la clase que toma
         /// </summary>
-        /// <returns></returns>
+        /// <returns>STRING</returns>
         public override string ParticiparEnClase()
         {
             string returnAux = string.Format("TOMA CLASE DE {0}", this._queClasesToma);
@@ -102,9 +110,10 @@ namespace ClasesInstanciables
         }
 
         /// <summary>
-        /// 
+        /// Sobreescritura del metodo MostrarDato, en el cual llamara al base de universatario y le agregara
+        /// los datos de participa en clase
         /// </summary>
-        /// <returns></returns>
+        /// <returns>STRING</returns>
         protected override string MostrarDato()
         {
             string aux = base.MostrarDato();
@@ -117,9 +126,9 @@ namespace ClasesInstanciables
         }
 
         /// <summary>
-        /// 
+        /// Hace publico todos los datos de MostrarDato, retornando un string
         /// </summary>
-        /// <returns></returns>
+        /// <returns>STRING</returns>
         public override string ToString()
         {
             string returnAux = this.MostrarDato();

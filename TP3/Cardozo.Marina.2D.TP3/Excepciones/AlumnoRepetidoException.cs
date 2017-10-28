@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Excepciones
 {
+    /// <summary>
+    /// Exepcion de si hay un alumno repetido
+    /// </summary>
     public class AlumnoRepetidoException : Exception
     {
         #region Constructores
-        /// <summary>
-        /// 
-        /// </summary>
         public AlumnoRepetidoException() { }
         #endregion
     }

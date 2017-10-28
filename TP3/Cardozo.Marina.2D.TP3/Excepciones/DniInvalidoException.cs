@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Excepciones
 {
     /// <summary>
-    /// Chequear!
+    /// Excepcion DNIINVALIDO
     /// </summary>
     public class DniInvalidoException: Exception
     {
@@ -15,14 +15,14 @@ namespace Excepciones
 
         #region Constructores
         /// <summary>
-        /// 
+        /// Constructor por defecto
         /// </summary>
         public DniInvalidoException() { }
 
         /// <summary>
-        /// 
+        /// recibe una excepcion por parametro
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">excepcion</param>
         public DniInvalidoException(Exception e)
             :base(e.Message,e)
         {
@@ -30,7 +30,7 @@ namespace Excepciones
         }
 
         /// <summary>
-        /// 
+        /// Recibe un mensaje por parametro
         /// </summary>
         /// <param name="message"></param>
         public DniInvalidoException(string message)
@@ -38,7 +38,7 @@ namespace Excepciones
         { }
 
         /// <summary>
-        /// 
+        ///  Recibe un mensaje por parametro
         /// </summary>
         /// <param name="message"></param>
         /// <param name="e"></param>

@@ -8,11 +8,16 @@ using Archivos;
 
 namespace ClasesInstanciables
 {
+    /// <summary>
+    /// Clase Jornada
+    /// </summary>
     public class Jornada
     {
+        #region Atributos
         protected List<Alumno> _alumno;
         protected Universidad.EClases _clase;
         protected Profesor _instructor;
+        #endregion
 
         #region Properties
 
@@ -174,7 +179,7 @@ namespace ClasesInstanciables
         /// </summary>
         /// <param name="jornada">objeto jornada</param>
         /// <returns>true si pudo ser guardado extiosamente, false si es que no pudo guardarse</returns>
-        public bool Guardar(Jornada jornada) 
+        public static bool Guardar(Jornada jornada) 
         {
             Texto txt = new Texto();
             string fileNamej = "Jornada.txt";
@@ -186,7 +191,7 @@ namespace ClasesInstanciables
         /// Utilizo un objeto de la clase texto para poderr leer el archivo, lanzando una excepcion en el caso de que no se pueda leer 
         /// </summary>
         /// <returns>STRING</returns>
-        public string Leer() 
+        public static string Leer() 
         {
             Texto txt = new Texto();
             string returnAux = "";

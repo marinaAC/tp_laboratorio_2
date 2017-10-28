@@ -8,13 +8,18 @@ using System.Text.RegularExpressions;
 
 namespace EntidadesAbstractas
 {
+    /// <summary>
+    /// Clase abstracta, de la cual heredaran el resto de las clases
+    /// </summary>
     public abstract class Persona
     {
+        #region Atributos
         public enum ENacionalidad { Argentino, Extranjero }
         protected string _apellido;
         protected int _dni;
         protected ENacionalidad _nacionalidad;
         protected string _nombre;
+        #endregion
 
         #region Propiedades
         /// <summary>
@@ -88,7 +93,7 @@ namespace EntidadesAbstractas
             set 
             {
                 int aux = Persona.ValidarDni(this._nacionalidad, value);
-                if (aux == 0 || !int.TryParse(value, out this._dni))
+                if (aux == 0 )
                 {
                       string error = "No pudo cargarse el DNI";
                       throw new DniInvalidoException(error);
@@ -105,6 +110,12 @@ namespace EntidadesAbstractas
         /// </summary>
         public Persona() { }
 
+        /// <summary>
+        /// Constructor que recibira por parametros los datos a cargar
+        /// </summary>
+        /// <param name="nombre">nombre de la persona, tipo string</param>
+        /// <param name="apellido">apellido de la persona, tipo string</param>
+        /// <param name="nacionalidad">enum con los datos de la nacionalidad</param>
         public Persona(string nombre, string apellido, ENacionalidad nacionalidad) 
         {
             this._apellido = apellido;
@@ -112,12 +123,26 @@ namespace EntidadesAbstractas
             this._nombre = nombre;
         }
 
+        /// <summary>
+        /// Constructor que utiliza el anterior, pero, ademas recibiendo por parametro el dni de tipo entero
+        /// </summary>
+        /// <param name="nombre">nombre de la persona, tipo string</param>
+        /// <param name="apellido">apellido de la persona, tipo string</param>
+        /// <param name="dni">dni a cargar, tipo int</param>
+        /// <param name="nacionalidad">enum con los datos de la nacionalidad</param>
         public Persona(string nombre, string apellido, int dni, ENacionalidad nacionalidad)
             : this(nombre,apellido,nacionalidad) 
         {
             this._dni = dni;
         }
 
+        /// <summary>
+        /// Constructor que utiliza el anterior, pero, ademas recibiendo por parametro el dni de tipo string
+        /// </summary>
+        /// <param name="nombre">nombre de la persona, tipo string</param>
+        /// <param name="apellido">apellido de la persona, tipo string</param>
+        /// <param name="dni">dni a cargar, tipo string</param>
+        /// <param name="nacionalidad">enum con los datos de la nacionalidad</param>
         public Persona(string nombre, string apellido, string dni, ENacionalidad nacionalidad)
             : this(nombre,apellido,nacionalidad)
         {
@@ -132,10 +157,11 @@ namespace EntidadesAbstractas
         #region Metodos
 
         /// <summary>
-        /// 
+        /// Valida que el numero de DNI sea mayor a 1 y menor de 89999999, para la nacionalidad Argentina, si es extranjero 
+        /// enviara una excepcion
         /// </summary>
-        /// <param name="nacionalidad"></param>
-        /// <param name="dato"></param>
+        /// <param name="nacionalidad">enum del tipo nacionalidad</param>
+        /// <param name="dato">numero de tipo int</param>
         /// <returns></returns>
         private static int ValidarDni(ENacionalidad nacionalidad, int dato) 
         {
@@ -158,11 +184,12 @@ namespace EntidadesAbstractas
 
 
         /// <summary>
-        /// 
+        /// Valida que el string enviado por parametro se pueda convertir a entero 
+        /// y luego verifico que sea un dni valido por su rango
         /// </summary>
-        /// <param name="nacionalidad"></param>
-        /// <param name="dato"></param>
-        /// <returns></returns>
+        /// <param name="nacionalidad">enum con la nacionalidad</param>
+        /// <param name="dato">dato de tipo string</param>
+        /// <returns>retonara una excepcion en el caso de que no pueda ser cargado, sino retornara el dato verificado convertido a entero</returns>
         private static int ValidarDni(ENacionalidad nacionalidad, string dato) 
         {
             int returnAux = 0;
@@ -171,14 +198,15 @@ namespace EntidadesAbstractas
                 string error = "No pudo cargarse el DNI";
                 throw new DniInvalidoException(error);
             }
-            return returnAux;
+            returnAux = ValidarDni(nacionalidad,returnAux);
+            return returnAux ;
         }
 
         /// <summary>
-        /// 
+        /// Validara que no tenga caracteres especiales, si lo tiene retornara un ""
         /// </summary>
-        /// <param name="dato"></param>
-        /// <returns></returns>
+        /// <param name="dato">string a verificar</param>
+        /// <returns>retornara el string si es correcto, sino ""</returns>
         private static string ValidarNombreApellido(string dato) 
         {
             string returnAux = "";
@@ -192,10 +220,13 @@ namespace EntidadesAbstractas
 
         }
 
+        /// <summary>
+        /// Sobreescritura de toString, donde retornara los datos de la persona
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
 
-           // string returnAux = string.Format("{0},{1},{2},{3}", this._apellido, this._nombre,this._nacionalidad,this._dni);
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("NOMBRE COMPLETO: {0},{1}",this._apellido,this._nombre);
             sb.AppendLine();

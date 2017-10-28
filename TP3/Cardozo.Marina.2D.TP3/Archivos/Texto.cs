@@ -34,6 +34,7 @@ namespace Archivos
             {
                 throw new ArchivosException("No pudo abrirse el archivo");
             }
+            text.Close();
 
             return returnAux;
         }
@@ -57,7 +58,7 @@ namespace Archivos
             {
                 throw new ArchivosException(new FileNotFoundException());
             }
-
+            fl.Close();
             return returnAux;
         }
     }
