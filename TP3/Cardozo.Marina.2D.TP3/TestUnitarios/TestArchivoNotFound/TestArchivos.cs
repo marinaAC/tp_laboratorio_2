@@ -17,14 +17,14 @@ namespace TestArchivoNotFound
             Assert.IsTrue(rta);
             try
             {
-                //tring datoErroneo = null;
-               // rta = txt1.Guardar("Test.txt", datoErroneo);
+                string datoErroneo = null;
+                rta = txt1.Guardar("Test.txt", datoErroneo);
 
             }
             catch (Exception e) 
             {
                 //No puedo agarrar esta excepcion
-                //Assert.IsInstanceOfType(e, typeof(ArchivosException));
+                Assert.IsInstanceOfType(e, typeof(ArchivosException));
             }
 
         }

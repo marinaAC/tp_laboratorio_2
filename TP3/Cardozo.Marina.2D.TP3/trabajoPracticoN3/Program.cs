@@ -7,12 +7,30 @@ using EntidadesAbstractas;
 using ClasesInstanciables;
 using Excepciones;
 
+using Archivos;
+
 namespace trabajoPracticoN3
 {
     class Program
     {
         static void Main(string[] args)
         {
+            Texto txt1 = new Texto();
+            try
+            {
+                string datoErroneo = null;
+                txt1.Guardar("Test.txt", datoErroneo);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                //No puedo agarrar esta excepcion
+                //Assert.IsInstanceOfType(e, typeof(ArchivosException));
+            }
+
+
+
             Universidad gim = new Universidad();
             Alumno a1 = new Alumno(1, "Juan", "Lopez", "12234456", EntidadesAbstractas.Persona.ENacionalidad.Argentino, Universidad.EClases.Programacion, Alumno.EEstadoCuenta.Becado); 
             gim += a1; 
