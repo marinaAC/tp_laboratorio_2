@@ -49,6 +49,7 @@
             this.btnIr.TabIndex = 0;
             this.btnIr.Text = "-->";
             this.btnIr.UseVisualStyleBackColor = true;
+            this.btnIr.Click += new System.EventHandler(this.btnIr_Click);
             // 
             // statusStrip
             // 

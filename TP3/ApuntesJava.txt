@@ -1,0 +1,91 @@
+Curso JavaScript POO
+ECMAScript 5 ----> todos los browser ("REGLAS PARA LOS NAVEGADORES", como declarar una clase, privado, etc)
+
+js--->basado en prototipos
+
+Repaso: 
+Clases  : 	"atributos"(caracteristicas)
+
+			"metodos" se encargan de interactuar con los atributos para realizar algo
+			
+			Ej: Date ---> definido por el lenguaje
+			
+----------------------Forma de declaracion del constructor
+		function Persona(nombre,apellido) {
+            this.name = nombre;
+            this.lastName = apellido;
+        }
+        var p = new Persona("marina","cardozo");  constructor
+		
+		Atributos publicos en emascripot 5
+		
+		Todo lo que no guardes dentro de this --> no es publico
+		Ejemplo si utilizas var dentro seria privado----> se manejan a nivel de $scope
+----------------------------------------------------------
+
+Objetos:
+	var object ={} != var object1 = new Objet();
+	
+Prototipo como cascada de herencia:
+
+Memoria: al instanciar mi clase, deja las implementaciones en el prototipo
+
+
+Estatico--------->
+No cambia su valor en tiempo de ejecucion
+Utilidad: Operaciones, algoritmos, etc
+
+
+Metodos----------->
+	estaticos: 
+	 Convertidor.aRadianes = function(grados) {
+            return grados * Convertidor.GRADOS_A_RADIANES;
+        }
+		
+		aRadianes =nombre del metodo;
+		Tienen que estar igualados a function;
+		
+		ej:
+		function MyClass(){
+			this.run = function(){
+				console.log("runing");
+			}
+		}
+		var instance = new MyClass();
+		instance.run;
+		//sale por pantalla running
+		
+		No se realizaria de esta forma, sino que habria que hacerlo desde el prototitpo
+		
+------------------Prototipo:
+Importante!
+mas importancia
+
+Prototipo - sirve para optomizar la memoria, se puede heredar, se puede apuntar, sin volver a declarar, y al otra classe apuntada
+va heredar todo.
+
+
+Ej de como se ve desde la consola:
+Persona {dni: "1234567", nombre: "Victor", numeroPiernas: 2}
+dni: "1234567"
+nombre:"Victor"
+numeroPiernas:2
+__proto__:
+numeroPiernas:3
+prueba:ƒ ()
+saludar:ƒ ()
+constructor:ƒ Persona(dni, nombre)
+__proto__:Object
+
+Cascada de herencias: 
+Dos niveles, primero busca en el nivel interno, sino despues lo busca en el prototipo de siguiente nivel y por ultimo el prototipo objeto
+
+Accesible: 
+Primero las propiedades declaradas en mi instancia, luego en los prototipos
+
+Si los nombres de las propiedades tienene el mismo nombre que el del prototipo tiene mas peso
+
+
+Call --> primer param es el ambito, 
+Apply, te deja pasar un array de parametros
+

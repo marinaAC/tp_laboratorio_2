@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using System.Net; // Avisar del espacio de nombre
 using System.ComponentModel;
+
 
 namespace Hilo
 {
@@ -16,6 +16,7 @@ namespace Hilo
 
         public Descargador(Uri direccion)
         {
+            this.direccion = direccion;
             this.html = "";
         }
 
@@ -24,10 +25,9 @@ namespace Hilo
             try
             {
                 WebClient cliente = new WebClient();
-                cliente.DownloadProgressChanged += ;
-                cliente.DownloadStringCompleted += ;
-
-                cliente.DownloadStringAsync();
+                cliente.DownloadProgressChanged += WebClientDownloadProgressChanged;
+                cliente.DownloadStringCompleted += WebClientDownloadCompleted;
+                cliente.DownloadStringAsync(this.direccion);
             }
             catch (Exception e)
             {
@@ -35,13 +35,16 @@ namespace Hilo
             }
         }
         //Realizar un hilo, que se va encargar de ejecutar el iniciar
-        //el otro van en paralelo, uno para ver la descarga, y el otro para obtener el html
+
 
         private void WebClientDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
+
         }
+
         private void WebClientDownloadCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
+
         }
     }
 }

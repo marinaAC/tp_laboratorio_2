@@ -89,5 +89,10 @@ namespace Navegador
                 rtxtHtmlCode.Text = html;
             }
         }
+
+        private void btnIr_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
