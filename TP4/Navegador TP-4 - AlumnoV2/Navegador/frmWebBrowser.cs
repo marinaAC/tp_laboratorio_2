@@ -92,7 +92,8 @@ namespace Navegador
 
         private void btnIr_Click(object sender, EventArgs e)
         {
-
+            string url = this.txtUrl;
+            Descargador desc = new Descargador(url);
         }
     }
 }

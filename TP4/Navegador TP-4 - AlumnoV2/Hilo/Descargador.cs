@@ -39,12 +39,12 @@ namespace Hilo
 
         private void WebClientDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-
+            
         }
 
         private void WebClientDownloadCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
-
+            string downloadC =(string)e.Result;
         }
     }
 }
