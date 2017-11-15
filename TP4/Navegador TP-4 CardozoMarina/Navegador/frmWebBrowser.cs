@@ -17,6 +17,7 @@ namespace Navegador
     {
         private const string ESCRIBA_AQUI = "Escriba aquí...";
         Archivos.Texto archivos;
+        private Descargador desc;
 
         public frmWebBrowser()
         {
@@ -29,7 +30,7 @@ namespace Navegador
             this.txtUrl.SelectionLength = 0; //from being highlighted
             this.txtUrl.ForeColor = Color.Gray;
             this.txtUrl.Text = frmWebBrowser.ESCRIBA_AQUI;
-
+            
             archivos = new Archivos.Texto(frmHistorial.ARCHIVO_HISTORIAL);
         }
 
@@ -72,28 +73,83 @@ namespace Navegador
                 this.Invoke(d, new object[] { progreso });
             }
             else
-            {
+            { 
                 tspbProgreso.Value = progreso;
             }
+
+            
         }
         delegate void FinDescargaCallback(string html);
         private void FinDescarga(string html)
         {
-            if (rtxtHtmlCode.InvokeRequired)
+            try
             {
-                FinDescargaCallback d = new FinDescargaCallback(FinDescarga);
-                this.Invoke(d, new object[] { html });
+                if (rtxtHtmlCode.InvokeRequired)
+                {
+                    FinDescargaCallback d = new FinDescargaCallback(FinDescarga);
+                    this.Invoke(d, new object[] { html });
+                }
+                else
+                {
+                    rtxtHtmlCode.Text = html;
+                    Uri aux;
+                    this.checkUrl(out aux);
+                    archivos.guardar(aux.ToString());
+                }
             }
-            else
+            catch (Exception e)
             {
-                rtxtHtmlCode.Text = html;
+                
+                MessageBox.Show("PROBLEMAS" + e.ToString());
+            }
+            
+
+        }
+        /// <summary>
+        /// Ejecuto el metodo descargar, para realizar la conexion, a este metodo
+        /// se le asigan los dos eventos en descargador, para avisar cuando es que se finalizo de ejecutar los eventos
+        /// A su vez, se ejecuta un hilo, para que vayan los dos procesos en paralelo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnIr_Click(object sender, EventArgs e)
+        {
+
+            Uri aux;
+            this.checkUrl(out aux);
+            this.desc = new Descargador(aux);
+            Thread hilo = new Thread(this.desc.IniciarDescarga);
+            hilo.Start();
+            this.desc.cargaPorcentaje += ProgresoDescarga;
+            this.desc.htmlFinalizado += FinDescarga;
+        }
+
+
+        private void mostrarTodoElHistorialToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            frmHistorial frmHistorial = new frmHistorial();
+            frmHistorial.ShowDialog();
+           
+        }
+
+        /// <summary>
+        /// Chequeo que la url contenta http, sino lo contiene se lo agrego guardando en una variable de tipo URI
+        /// </summary>
+        /// <param name="url"></param>
+        private void checkUrl(out Uri url)
+        {
+            string aux = this.txtUrl.Text;
+            if (!aux.Contains("http://"))
+            {
+                string urlAux = string.Format("http://{0}", this.txtUrl.Text);
+                url = new Uri(urlAux);
+            }
+            else 
+            {
+                url = new Uri(aux);
             }
         }
 
-        private void btnIr_Click(object sender, EventArgs e)
-        {
-            string url = this.txtUrl;
-            Descargador desc = new Descargador(url);
-        }
     }
 }

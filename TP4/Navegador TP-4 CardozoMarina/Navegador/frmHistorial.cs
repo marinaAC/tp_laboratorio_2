@@ -17,13 +17,24 @@ namespace Navegador
         public frmHistorial()
         {
             InitializeComponent();
+            
         }
 
         private void frmHistorial_Load(object sender, EventArgs e)
         {
             Archivos.Texto archivos = new Archivos.Texto(frmHistorial.ARCHIVO_HISTORIAL);
-
+            List<string> archivoLeer;
+            archivos.leer(out archivoLeer);
+            foreach (string item in archivoLeer) 
+            {
+                this.lstHistorial.Items.Add(item);
+            }
             
+        }
+
+        private void lstHistorial_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
