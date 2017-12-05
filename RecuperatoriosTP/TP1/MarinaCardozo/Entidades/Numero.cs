@@ -72,6 +72,7 @@ namespace Entidades
         public static double DecimalBinario(double numero) 
         {
             string binario = "";
+            int auxNum = (int)numero;
             while (numero > 0)
             {
                 binario = (numero % 2).ToString() + binario;
