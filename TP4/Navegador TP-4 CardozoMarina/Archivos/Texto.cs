@@ -44,6 +44,7 @@ namespace Archivos
             else 
             {
                 throw new NavegadorException("No pudo abrirse el archivo");
+
             }
             fl.Close();
             return returnAux;
