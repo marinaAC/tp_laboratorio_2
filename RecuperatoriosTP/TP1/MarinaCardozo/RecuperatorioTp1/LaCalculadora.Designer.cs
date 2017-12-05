@@ -74,6 +74,7 @@
             this.btnOperar.TabIndex = 3;
             this.btnOperar.Text = "Operar";
             this.btnOperar.UseVisualStyleBackColor = true;
+            this.btnOperar.Click += new System.EventHandler(this.btnOperar_Click);
             // 
             // btnLimpiar
             // 
@@ -83,6 +84,7 @@
             this.btnLimpiar.TabIndex = 4;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // btnCerrar
             // 
@@ -92,6 +94,7 @@
             this.btnCerrar.TabIndex = 5;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // btnConvertBinario
             // 
@@ -101,6 +104,7 @@
             this.btnConvertBinario.TabIndex = 6;
             this.btnConvertBinario.Text = "Convertir a Binario";
             this.btnConvertBinario.UseVisualStyleBackColor = true;
+            this.btnConvertBinario.Click += new System.EventHandler(this.btnConvertBinario_Click);
             // 
             // btnConvertDecimal
             // 
@@ -110,6 +114,7 @@
             this.btnConvertDecimal.TabIndex = 7;
             this.btnConvertDecimal.Text = "Convertir a Decimal";
             this.btnConvertDecimal.UseVisualStyleBackColor = true;
+            this.btnConvertDecimal.Click += new System.EventHandler(this.btnConvertDecimal_Click);
             // 
             // lblRta
             // 
@@ -140,6 +145,7 @@
             this.Name = "LaCalculadora";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculadora de Marina Cardozo 2 D";
+            this.Load += new System.EventHandler(this.LaCalculadora_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
